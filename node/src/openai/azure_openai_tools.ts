@@ -1,4 +1,4 @@
-import OpenAI from "openai";
+import OpenAI, { AzureOpenAI } from "openai";
 import dotenv from "dotenv";
 import path from "path";
 
@@ -6,10 +6,22 @@ import { ChatCompletionTool } from "openai/resources/chat/completions";
 
 import { Stream } from "openai/streaming";
 
+import {
+  DefaultAzureCredential,
+  getBearerTokenProvider,
+} from "@azure/identity";
+
+const credential = new DefaultAzureCredential();
+const scope = "https://cognitiveservices.azure.com/.default";
+const azureADTokenProvider = getBearerTokenProvider(credential, scope);
+
 dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-
+const openai = new AzureOpenAI({
+  apiVersion: process.env.AZURE_OPENAI_API_VERSION,
+  baseURL: `${process.env.AZURE_OPENAI_API_BASE_URL}/openai/deployments/${process.env.AZURE_OPENAI_DEPLOYMENT_NAME}`,
+  azureADTokenProvider,
+});
 const SYS_PROMPT = `
 You are a friendly chatbot answering the user's questions.
 `;

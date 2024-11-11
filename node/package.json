@@ -6,7 +6,9 @@
   "scripts": {
     "start": "tsx src/index.ts",
     "openai-basic": "tsx src/openai/openai_basic.ts",
-    "openai-tools": "tsx src/openai/openai_tools.ts"
+    "openai-tools": "tsx src/openai/openai_tools.ts",
+    "azure-openai-basic": "tsx src/openai/azure_openai_basic.ts",
+    "azure-openai-tools": "tsx src/openai/azure_openai_tools.ts"
   },
   "author": "",
   "license": "ISC",
