@@ -15,6 +15,6 @@ cp .env.example .env
 # set the necessary values to .env
 
 # Run an example, e.g.:
-python openai_basic.py
+python openai/openai_basic.py
 
 ```

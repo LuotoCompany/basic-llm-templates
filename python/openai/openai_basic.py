@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
-llm = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"))
+llm = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 SYS_PROMPT = """
 You are a friendly chatbot answering the user's questions.

@@ -12,9 +12,9 @@ azure_token_provider = get_bearer_token_provider(
 )
 
 llm = AzureOpenAI(
-    azure_endpoint=os.environ.get("AZURE_OPENAI_API_BASE_URL"),
+    azure_endpoint=os.getenv("AZURE_OPENAI_API_BASE_URL"),
     azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
-    api_version=os.environ.get("AZURE_OPENAI_API_VERSION"),
+    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
     azure_ad_token_provider=azure_token_provider,
 )
 

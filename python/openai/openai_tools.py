@@ -2,28 +2,16 @@ import json
 import os
 import random
 from typing import List
-from openai import AzureOpenAI
+from openai import OpenAI
 from openai.types.chat import ChatCompletionToolParam
 from openai.types.chat.chat_completion_message_tool_call import (
     ChatCompletionMessageToolCall,
 )
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from dotenv import load_dotenv
 
 load_dotenv()
 
-credential = DefaultAzureCredential()
-AZURE_COGNITIVE_SERVICES_SCOPE = "https://cognitiveservices.azure.com/.default"
-azure_token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), AZURE_COGNITIVE_SERVICES_SCOPE
-)
-
-llm = AzureOpenAI(
-    azure_endpoint=os.environ.get("AZURE_OPENAI_API_BASE_URL"),
-    azure_deployment=os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
-    api_version=os.environ.get("AZURE_OPENAI_API_VERSION"),
-    azure_ad_token_provider=azure_token_provider,
-)
+llm = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 SYS_PROMPT = """
 You are a friendly chatbot answering the user's questions.
@@ -101,8 +89,7 @@ if tool_calls:
 
     stream = call_llm(messages=messages, stream=True)
     for chunk in stream:
-        if len(chunk.choices) > 0 and chunk.choices[0].delta:
-            content = chunk.choices[0].delta.content or ""
-            print(content, end="", flush=True)
+        content = chunk.choices[0].delta.content or ""
+        print(content, end="", flush=True)
 else:
     print(response.choices[0].message.content)
