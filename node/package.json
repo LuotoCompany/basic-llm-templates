@@ -1,0 +1,24 @@
+{
+  "name": "node-examples",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "openai-basic": "tsx src/openai/openai_basic.ts",
+    "openai-tools": "tsx src/openai/openai_tools.ts"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^20.11.24",
+    "tsx": "^4.7.1",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@azure/identity": "^4.5.0",
+    "@azure/openai": "^2.0.0-beta.3",
+    "dotenv": "^16.4.5",
+    "openai": "^4.71.1"
+  }
+}
