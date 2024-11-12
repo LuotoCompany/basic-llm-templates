@@ -44,11 +44,11 @@ def handle_tool_call(tool_call: ChatCompletionMessageToolCall):
 
     print(f"LLM called tool: {tool_name} with args: {tool_args}")
 
-    temperature = random.randint(0, 20)
-    weather_type = random.choice(["sunny", "cloudy", "raining"])
-
     if tool_name == "getWeather":
+        temperature = random.randint(0, 20)
+        weather_type = random.choice(["sunny", "cloudy", "raining"])
         city = tool_args["city"]
+
         return {
             "role": "tool",
             "tool_call_id": tool_call.id,

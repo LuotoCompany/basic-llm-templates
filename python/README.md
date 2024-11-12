@@ -18,3 +18,16 @@ cp .env.example .env
 python openai/openai_basic.py
 
 ```
+
+## Running the Ollama examples
+
+In order to try the Ollama examples, first [get Ollama](https://ollama.com/)
+
+```
+# First download the model
+ollama pull llama3.2
+
+# Then run the example
+python ollama/ollama_basic.py
+
+```

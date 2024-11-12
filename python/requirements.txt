@@ -18,6 +18,7 @@ jiter==0.7.0
 jmespath==1.0.1
 msal==1.31.0
 msal-extensions==1.2.0
+ollama==0.3.3
 openai==1.54.3
 portalocker==2.10.1
 pycparser==2.22
