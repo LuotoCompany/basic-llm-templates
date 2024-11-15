@@ -27,11 +27,13 @@ This repository contains simple templates for using LLM APIs in different langua
 
 - [Basic OpenAI Integration](python/openai/openai_basic.py) - Simple example of using OpenAI API directly
 - [OpenAI with Function Calling](python/openai/openai_tools.py) - Example demonstrating OpenAI's function calling capabilities
+- [OpenAI with Function Calling and Streaming](python/openai/openai_tools_with_streaming.py) - Parsing multiple OpenAI tool calls while streaming the content
 
 ### Azure OpenAI
 
 - [Basic Azure OpenAI Integration](python/openai/azure_openai_basic.py) - Simple example of using Azure OpenAI with Azure AD authentication
 - [Azure OpenAI with Function Calling](python/openai/azure_openai_tools.py) - Example demonstrating Azure OpenAI's function calling capabilities
+- [Azure OpenAI with Function Calling and Streaming](python/openai/azure_openai_tools_with_streaming.py) - Parsing multiple Azure OpenAI tool calls while streaming the content
 
 ### Anthropic
 
