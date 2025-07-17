@@ -1,4 +1,3 @@
-import os
 from llm import LLMInterface
 
 # Configuration
@@ -12,54 +11,6 @@ You have access to two tools:
 
 Use these tools when the user asks questions about files or directories.
 """
-
-
-def list_files(path: str = ".") -> str:
-    """List files and directories in the given path"""
-    try:
-        if not os.path.exists(path):
-            return f"Error: Path '{path}' does not exist"
-
-        items = os.listdir(path)
-        if not items:
-            return f"Directory '{path}' is empty"
-
-        files = []
-        dirs = []
-
-        for item in items:
-            item_path = os.path.join(path, item)
-            if os.path.isdir(item_path):
-                dirs.append(f"📁 {item}/")
-            else:
-                files.append(f"📄 {item}")
-
-        result = f"Contents of '{path}':\n"
-        if dirs:
-            result += "\nDirectories:\n" + "\n".join(dirs)
-        if files:
-            result += "\nFiles:\n" + "\n".join(files)
-
-        return result
-    except Exception as e:
-        return f"Error listing files: {str(e)}"
-
-
-def read_file_content(filepath: str) -> str:
-    """Read the contents of a file"""
-    try:
-        if not os.path.exists(filepath):
-            return f"Error: File '{filepath}' does not exist"
-
-        if os.path.isdir(filepath):
-            return f"Error: '{filepath}' is a directory, not a file"
-
-        with open(filepath, "r", encoding="utf-8") as f:
-            content = f.read()
-
-        return f"Contents of '{filepath}':\n```\n{content}\n```"
-    except Exception as e:
-        return f"Error reading file: {str(e)}"
 
 
 def execute_tool(tool_call: dict, llm: LLMInterface) -> str:

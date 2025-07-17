@@ -1,5 +1,6 @@
 import json
 import os
+from pathlib import Path
 from typing import Any, List, Dict, Optional, Tuple
 from dotenv import load_dotenv
 
@@ -269,10 +270,11 @@ class LLMInterface:
     def list_files_filtered(self, path: str = ".") -> str:
         """List files and directories with filtering applied"""
         try:
-            if not os.path.exists(path):
+            path_obj = Path(path)
+            if not path_obj.exists():
                 return f"Error: Path '{path}' does not exist"
 
-            items = os.listdir(path)
+            items = list(path_obj.iterdir())
             if not items:
                 return f"Directory '{path}' is empty"
 
@@ -282,15 +284,14 @@ class LLMInterface:
 
             for item in items:
                 # Filter out ignored files
-                if self._should_ignore_file(item):
+                if self._should_ignore_file(item.name):
                     filtered_count += 1
                     continue
 
-                item_path = os.path.join(path, item)
-                if os.path.isdir(item_path):
-                    dirs.append(f"📁 {item}/")
+                if item.is_dir():
+                    dirs.append(f"📁 {item.name}/")
                 else:
-                    files.append(f"📄 {item}")
+                    files.append(f"📄 {item.name}")
 
             result = f"Contents of '{path}':\n"
             if dirs:
@@ -308,23 +309,21 @@ class LLMInterface:
     def read_file_filtered(self, filepath: str) -> str:
         """Read file contents with filtering applied"""
         try:
-            # Extract filename from path for checking
-            filename = os.path.basename(filepath)
-
+            file_path = Path(filepath)
+            
             # Check if file should be ignored
-            if self._should_ignore_file(filename):
+            if self._should_ignore_file(file_path.name):
                 return (
                     f"Error: Access to '{filepath}' is restricted for security reasons"
                 )
 
-            if not os.path.exists(filepath):
+            if not file_path.exists():
                 return f"Error: File '{filepath}' does not exist"
 
-            if os.path.isdir(filepath):
+            if file_path.is_dir():
                 return f"Error: '{filepath}' is a directory, not a file"
 
-            with open(filepath, "r", encoding="utf-8") as f:
-                content = f.read()
+            content = file_path.read_text(encoding="utf-8")
 
             return f"Contents of '{filepath}':\n```\n{content}\n```"
         except Exception as e:
