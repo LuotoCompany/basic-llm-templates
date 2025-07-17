@@ -23,6 +23,9 @@ This repository contains simple templates for using LLM APIs in different langua
 
 ## Python Examples
 
+### Agent
+- [Basic Agent that can list and read files](python/agent/agent_basic.py) - An agent that can list and read files, can use either OpenAI or Anthropic
+
 ### OpenAI
 
 - [Basic OpenAI Integration](python/openai/openai_basic.py) - Simple example of using OpenAI API directly
