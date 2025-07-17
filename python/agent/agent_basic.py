@@ -2,7 +2,7 @@ import os
 from llm import LLMInterface
 
 # Configuration
-LLM_PROVIDER = "anthropic"  # Can be "openai" or "anthropic"
+LLM_PROVIDER = "openai"  # Can be "openai" or "anthropic"
 
 SYS_PROMPT = """
 You are a helpful agent that can read files and list directory contents. 

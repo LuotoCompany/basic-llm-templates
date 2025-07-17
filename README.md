@@ -6,6 +6,10 @@ This repository contains simple templates for using LLM APIs in different langua
 
 ## Node.js Examples
 
+### Agent
+- [Basic Agent that can list and read files](node/src/agent/agent_basic.ts) - An agent that can list and read files, can use either OpenAI or Anthropic
+
+
 ### OpenAI
 
 - [Basic OpenAI Integration](node/src/openai/openai_basic.ts) - Simple example of using OpenAI API directly

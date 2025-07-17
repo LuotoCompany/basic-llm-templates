@@ -10,7 +10,8 @@
     "azure-openai-basic": "tsx src/openai/azure_openai_basic.ts",
     "azure-openai-tools": "tsx src/openai/azure_openai_tools.ts",
     "claude-basic": "tsx src/anthropic/claude_basic.ts",
-    "claude-tools": "tsx src/anthropic/claude_tools.ts"
+    "claude-tools": "tsx src/anthropic/claude_tools.ts",
+    "agent-basic": "tsx src/agent/agent_basic.ts"
   },
   "author": "",
   "license": "ISC",
